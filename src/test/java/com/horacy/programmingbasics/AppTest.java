@@ -1,4 +1,4 @@
-package com.infoworld;
+package com.horacy.programmingbasics;
 
 import static org.junit.Assert.assertTrue;
 

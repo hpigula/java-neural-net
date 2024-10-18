@@ -36,7 +36,7 @@
           <artifactId>exec-maven-plugin</artifactId>
           <version>1.4.0</version>
           <configuration>
-            <mainClass>com.infoworld.App</mainClass>
+            <mainClass>com.horacy.programmingbasics.App</mainClass>
           </configuration>
   </plugin>
 
