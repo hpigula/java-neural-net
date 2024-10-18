@@ -1,12 +1,10 @@
-package com.infoworld;
+package com.horacy.programmingbasics;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
 import java.util.Random;
 import java.lang.Math;
-
-import java.util.stream.Collectors;
 
 public class App {
   public static void main( String[] args ) {
@@ -22,33 +20,35 @@ public class App {
     data.add(Arrays.asList(120, 67));
     List<Double> answers = Arrays.asList(1.0,0.0,0.0,1.0);  
 
-    Network network500 = new Network(500);
-    network500.train(data, answers);
+    Network network50 = new Network(50);
+    network50.train(data, answers);
 
-    Network network1000 = new Network(1000);
-    network1000.train(data, answers);
+    Network network100 = new Network(100);
+    network100.train(data, answers);
 
-    System.out.println("");
-    System.out.println(String.format("  male, 167, 73: network500: %.10f | network1000: %.10f", network500.predict(167, 73), network1000.predict(167, 73)));
-    System.out.println(String.format("female, 105, 67: network500: %.10f | network1000: %.10f", network500.predict(105, 67), network1000.predict(105, 67))); 
-    System.out.println(String.format("female, 120, 72: network500: %.10f | network1000: %.10f", network500.predict(120, 72), network1000.predict(120, 72))); 
-    System.out.println(String.format("  male, 143, 67: network500: %.10f | network1000: %.10f", network500.predict(143, 67), network1000.predict(120, 72)));
-    System.out.println(String.format(" male', 130, 66: network500: %.10f | network1000: %.10f", network500.predict(130, 66), network1000.predict(130, 66)));
+    System.out.println();
+    System.out.printf("  male, 167, 73: network500: %.10f | network1000: %.10f%n", network50.predict(167, 73), network100.predict(167, 73));
+    System.out.printf("female, 105, 67: network500: %.10f | network1000: %.10f%n", network50.predict(105, 67), network100.predict(105, 67));
+    System.out.printf("female, 120, 72: network500: %.10f | network1000: %.10f%n", network50.predict(120, 72), network100.predict(120, 72));
+    System.out.printf("  male, 143, 67: network500: %.10f | network1000: %.10f%n", network50.predict(143, 67), network100.predict(120, 72));
+    System.out.printf(" male', 130, 66: network500: %.10f | network1000: %.10f%n", network50.predict(130, 66), network100.predict(130, 66));
 
-/*
-    Network network500learn1 = new Network(500, 2.0);
-    network500learn1.train(data, answers);
+    System.out.print("\n" +
+            "*** Second Round of the functions *** \n"
+            );
+    Network network50learn1 = new Network(50, 2.0);
+    network50learn1.train(data, answers);
 
-    Network network1000learn1 = new Network(1000, 2.0);
-    network1000learn1.train(data, answers);
+    Network network100learn1 = new Network(100, 4.1);
+    network100learn1.train(data, answers);
 
-    System.out.println("");
-    System.out.println(String.format("  male, 167, 73: network500learn1: %.10f | network1000learn1: %.10f", network500learn1.predict(167, 73), network1000learn1.predict(167, 73)));
-    System.out.println(String.format("female, 105, 67: network500learn1: %.10f | network1000learn1: %.10f", network500learn1.predict(105, 67), network1000learn1.predict(105, 67))); 
-    System.out.println(String.format("female, 120, 72: network500learn1: %.10f | network1000learn1: %.10f", network500learn1.predict(120, 72), network1000learn1.predict(120, 72))); 
-    System.out.println(String.format("  male, 143, 67: network500learn1: %.10f | network1000learn1: %.10f", network500learn1.predict(143, 67), network1000learn1.predict(120, 72)));
-    System.out.println(String.format(" male', 130, 66: network500learn1: %.10f | network1000learn1: %.10f", network500learn1.predict(130, 66), network1000learn1.predict(130, 66)));
-*/
+    System.out.println();
+    System.out.printf("  male, 167, 73: network50learn1: %.10f | network100learn1: %.10f%n", network50learn1.predict(167, 73), network100learn1.predict(167, 73));
+    System.out.printf("female, 105, 67: network50learn1: %.10f | network100learn1: %.10f%n", network50learn1.predict(105, 67), network100learn1.predict(105, 67));
+    System.out.printf("female, 120, 72: network50learn1: %.10f | network100learn1: %.10f%n", network50learn1.predict(120, 72), network100learn1.predict(120, 72));
+    System.out.printf("  male, 143, 67: network50learn1: %.10f | network100learn1: %.10f%n", network50learn1.predict(143, 67), network100learn1.predict(120, 72));
+    System.out.printf(" male', 130, 66: network50learn1: %.10f | network100learn1: %.10f%n", network50learn1.predict(130, 66), network100learn1.predict(130, 66));
+
   }
  
 
@@ -93,7 +93,7 @@ public class App {
 	}
         Double thisEpochLoss = Util.meanSquareLoss(answers, predictions);
 
-	if (epoch % 10 == 0) System.out.println(String.format("Epoch: %s | bestEpochLoss: %.15f | thisEpochLoss: %.15f", epoch, bestEpochLoss, thisEpochLoss));
+	if (epoch % 10 == 0) System.out.printf("Epoch: %s | bestEpochLoss: %.15f | thisEpochLoss: %.15f%n", epoch, bestEpochLoss, thisEpochLoss);
 
 	if (bestEpochLoss == null){
           bestEpochLoss = thisEpochLoss;
@@ -129,7 +129,7 @@ public class App {
 	this.weight1 += changeFactor; 
       } else { 
 	this.weight2 += changeFactor; 
-      };
+      }
     }
     public void forget(){
       bias = oldBias;
